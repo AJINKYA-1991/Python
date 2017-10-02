@@ -1,0 +1,27 @@
+import requests
+response = requests.get('http://jsonplaceholder.typicode.com/users')
+print (response.text)
+print response.headers['content-type']
+print(response.status_code)
+data = response.json()
+print(data[0])
+print(data[0]['address']['geo']['lat'])
+print (str(type(data)))
+
+-------------------------------------
+-------------------------------------
+import requests
+#query = raw_input()
+response = requests.get('https://api.github.com/search/users?q=Ajinkya')
+#print (response.text)
+print response.headers['content-type']
+print(response.status_code)
+data = response.json()
+print(data['items'][0]['starred_url'])
+#print(data[0]['address']['geo']['lat'])
+length = len(data['items'])
+for x in range(0, length):
+ print(data['items'][x]['starred_url'])
+#print(data[0]['username'])
+#https://api.github.com/search/code?q=page
+#https://api.github.com/search/code?q=sort
