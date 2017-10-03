@@ -1,0 +1,13 @@
+from collections import OrderedDict
+from collections import defaultdict
+d = OrderedDict()
+size = input()
+sum = 0
+for i in range(size):
+  p = raw_input()
+  d[p] = d.get(p,0) + 1
+for p in d.items():
+  sum = sum + 1
+print(sum)
+for k,v in d.items():
+    print(v),
