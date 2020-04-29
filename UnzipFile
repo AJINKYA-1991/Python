@@ -1,0 +1,13 @@
+import shutil
+import boto3
+from StringIO import StringIO
+
+s3 = boto3.resource('s3',aws_access_key_id=key_id,aws_secret_access_key=secret_key,region_name=region,use_ssl=False)
+obj = s3.Object(bucket_name=bucket,key=gzipped_key)
+buffer = io.BytesIO(obj.get()["Body"].read())
+gzipfile = gzip.GzipFile(fileobj=buffer)
+content = gzipfile.read()
+fo = StringIO(content)
+
+client = boto3.client('s3',aws_access_key_id=key_id,aws_secret_access_key=secret_key,region_name=region)
+client.upload_fileobj(fo,Bucket=bucket,Key=uncompressed_key)
